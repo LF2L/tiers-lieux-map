@@ -1,0 +1,68 @@
+---
+layout: page
+title: carte
+permalink: /carte/
+---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <title>Carte Tiers Lieux</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 10;
+        padding: 10;
+      }
+
+      #map {
+        position: absolute;
+        top: 2;
+        bottom: 1;
+        height: 50%;
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='map'></div>
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZ2FhcmJlbGFleiIsImEiOiJjaXN2dXE0djUwMDFvMnVtbjllbm1tMWkzIn0.qOjHhKhHh4ecVh6AaQRSFQ'; // replace this with your access token
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/gaarbelaez/cjnufhsfe4qqs2sp92rekkkfr', // replace this with your style URL
+      center: [6.222999, 48.454992],
+      zoom: 7.69
+    });
+    // code from the next step will go here
+    map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['tiers-lieux'] // replace this with the name of the layer
+  });
+
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<h3>' + feature.properties.name + '</h3><p>' + feature.properties.type_lab + '</p>')
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+});
+
+    </script>
+  </body>
+</html>
+
+
+Test.
+
+
+
+
