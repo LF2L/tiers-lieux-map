@@ -1,7 +1,7 @@
 ---
-layout: page
+layout: about
 title: About
 permalink: /about/
 ---
 
-This a test.
+Ceci est une Cartographie des Tiers Lieux du Sillon Lorrain.
